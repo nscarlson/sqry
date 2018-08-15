@@ -71,40 +71,16 @@
 </head>
 
 <body>
-    <div id="preload">
-        <img class="logo" src="<%= __DEV__ ? '.' : '../static' %>/images/ledgerlive-logo.svg" alt="" />
-    </div>
     <div id="app"></div>
     <script>
         const { remote } = require('electron')
         const { name } = remote.getCurrentWindow()
 
-        const preloadEl = document.getElementById('preload')
         const appEl = document.getElementById('app')
-        const logoEl = preloadEl.querySelector('.logo')
 
         const initApp = (options = {}) => {
             const { force = false } = options
 
-            if (force) {
-                preloadEl.remove()
-            } else {
-                preloadEl.style.opacity = 0
-
-                preloadEl.addEventListener('transitionend', () => preloadEl.remove())
-            }
-        }
-
-        if (name === 'MainWindow') {
-            preloadEl.style.display = 'flex'
-            const startTime = Date.now()
-            const PRELOAD_WAIT_TIME_MIN = 3000
-            window.onAppReady = () => {
-                const delay = Math.max(0, PRELOAD_WAIT_TIME_MIN - (Date.now() - startTime))
-                setTimeout(initApp, delay)
-            }
-        } else {
-            initApp({ force: true })
         }
     </script>
 </body>

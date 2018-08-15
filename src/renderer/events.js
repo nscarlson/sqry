@@ -12,19 +12,13 @@ import 'commands'
 import { ipcRenderer } from 'electron'
 import debug from 'debug'
 
-import network from 'api/network'
-import logger from 'logger'
-import db from 'helpers/db'
 
 import { CHECK_UPDATE_DELAY, DISABLE_ACTIVITY_INDICATORS } from 'config/constants'
 import { onSetDeviceBusy } from 'components/DeviceBusyIndicator'
 import { onSetLibcoreBusy } from 'components/LibcoreBusyIndicator'
 
-import { lock } from 'reducers/application'
 import { setUpdateStatus } from 'reducers/update'
 import { addDevice, removeDevice, resetDevices } from 'actions/devices'
-
-import listenDevices from 'commands/listenDevices'
 
 const d = {
   device: debug('lwd:device'),
@@ -54,40 +48,6 @@ export default ({ store }: { store: Object }) => {
     syncDeviceSub.unsubscribe()
     syncDeviceSub = null
   }
-
-  function syncDevices() {
-    syncDeviceSub = listenDevices.send().subscribe(
-      ({ device, type }) => {
-        if (device) {
-          if (type === 'add') {
-            d.device('Device - add')
-            store.dispatch(addDevice(device))
-          } else if (type === 'remove') {
-            d.device('Device - remove')
-            store.dispatch(removeDevice(device))
-          }
-        }
-      },
-      error => {
-        logger.warn('listenDevices error', error)
-        store.dispatch(resetDevices())
-        syncDevices()
-      },
-      () => {
-        logger.warn('listenDevices ended unexpectedly. restarting')
-        store.dispatch(resetDevices())
-        syncDevices()
-      },
-    )
-  }
-
-  syncDevices()
-
-  ipcRenderer.on('lock', () => {
-    if (db.hasEncryptionKey('app', 'accounts')) {
-      store.dispatch(lock())
-    }
-  })
 
   ipcRenderer.on('executeHttpQueryOnRenderer', (event: any, { networkArg, id }) => {
     network(networkArg).then(

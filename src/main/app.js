@@ -1,25 +1,14 @@
 // @flow
 
 import { app, BrowserWindow, Menu, screen } from 'electron'
-import debounce from 'lodash/debounce'
-import {
-  MIN_HEIGHT,
-  MIN_WIDTH,
-  DEFAULT_WINDOW_WIDTH,
-  DEFAULT_WINDOW_HEIGHT,
-} from 'config/constants'
 
 import menu from 'main/menu'
-import db from 'helpers/db'
 import { i } from 'helpers/staticPath'
-import resolveUserDataDirectory from 'helpers/resolveUserDataDirectory'
 
 import { terminateAllTheThings } from './terminator'
 
 // necessary to prevent win from being garbage collected
 let mainWindow = null
-
-db.init(resolveUserDataDirectory())
 
 const isSecondInstance = app.makeSingleInstance(() => {
   if (mainWindow) {
@@ -42,7 +31,6 @@ const devTools = __DEV__ || DEV_TOOLS
 require('electron-context-menu')({
   showInspectElement: __DEV__ || DEV_TOOLS,
   showCopyImageAddress: false,
-  // TODO: i18n for labels
   labels: {
     cut: 'Cut',
     copy: 'Copy',
@@ -64,24 +52,6 @@ const getWindowPosition = (height, width, display = screen.getPrimaryDisplay()) 
 const getDefaultUrl = () =>
   __DEV__ ? `http://localhost:${ELECTRON_WEBPACK_WDS_PORT || ''}` : `file://${__dirname}/index.html`
 
-const saveWindowSettings = window => {
-  window.on(
-    'resize',
-    debounce(() => {
-      const [width, height] = window.getSize()
-      db.setKey('windowParams', `${window.name}.dimensions`, { width, height })
-    }, 100),
-  )
-
-  window.on(
-    'move',
-    debounce(() => {
-      const [x, y] = window.getPosition()
-      db.setKey('windowParams', `${window.name}.positions`, { x, y })
-    }, 100),
-  )
-}
-
 const defaultWindowOptions = {
   // see https://github.com/electron-userland/electron-builder/issues/2269
   icon: i('browser-window-icon-512x512.png'),
@@ -95,15 +65,12 @@ const defaultWindowOptions = {
 }
 
 async function createMainWindow() {
-  const savedDimensions = await db.getKey('app', 'MainWindow.dimensions', {})
-  const savedPositions = await db.getKey('app', 'MainWindow.positions', null)
-
-  const width = savedDimensions.width || DEFAULT_WINDOW_WIDTH
-  const height = savedDimensions.height || DEFAULT_WINDOW_HEIGHT
+  const width =  500
+  const height = 500
 
   const windowOptions = {
     ...defaultWindowOptions,
-    ...(savedPositions !== null ? savedPositions : getWindowPosition(height, width)),
+    ...(getWindowPosition(height, width)),
     ...(process.platform === 'darwin'
       ? {
           frame: false,
@@ -112,8 +79,8 @@ async function createMainWindow() {
       : {}),
     autoHideMenuBar: true,
     height,
-    minHeight: MIN_HEIGHT,
-    minWidth: MIN_WIDTH,
+    minHeight: 500,
+    minWidth: 500,
     show: false,
     width,
   }
@@ -129,8 +96,6 @@ async function createMainWindow() {
       mode: DEV_TOOLS_MODE,
     })
   }
-
-  saveWindowSettings(window)
 
   window.loadURL(url)
 
