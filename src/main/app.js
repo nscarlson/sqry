@@ -25,8 +25,6 @@ export const getMainWindow = () => mainWindow
 
 const { UPGRADE_EXTENSIONS, ELECTRON_WEBPACK_WDS_PORT, DEV_TOOLS, DEV_TOOLS_MODE } = process.env
 
-const devTools = __DEV__ || DEV_TOOLS
-
 // context menu - see #978
 require('electron-context-menu')({
   showInspectElement: __DEV__ || DEV_TOOLS,
@@ -55,10 +53,7 @@ const getDefaultUrl = () =>
 const defaultWindowOptions = {
   // see https://github.com/electron-userland/electron-builder/issues/2269
   icon: i('browser-window-icon-512x512.png'),
-
-  backgroundColor: '#fff',
   webPreferences: {
-    devTools,
     // Enable, among other things, the ResizeObserver
     experimentalFeatures: true,
   },
@@ -73,7 +68,6 @@ async function createMainWindow() {
     ...(getWindowPosition(height, width)),
     ...(process.platform === 'darwin'
       ? {
-          frame: false,
           titleBarStyle: 'hiddenInset',
         }
       : {}),
@@ -82,6 +76,7 @@ async function createMainWindow() {
     minHeight: 500,
     minWidth: 500,
     show: false,
+    transparent: true,
     width,
   }
 
@@ -90,12 +85,6 @@ async function createMainWindow() {
   window.name = 'MainWindow'
 
   const url = getDefaultUrl()
-
-  if (devTools) {
-    window.webContents.openDevTools({
-      mode: DEV_TOOLS_MODE,
-    })
-  }
 
   window.loadURL(url)
 

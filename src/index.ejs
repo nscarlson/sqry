@@ -1,87 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html style="background: rgba(0,0,0,0)">
 
 <head>
-    <title>
-        <%= process.env.npm_package_productName %>
-    </title>
-    <meta charset="utf-8">
-    <style>
-        <%=__GLOBAL_STYLES__ %>body {
-            background: #f9f9f9;
-        }
-
-        #preload {
-            -webkit-app-region: drag;
-            align-items: center;
-            background: #f9f9f9;
-            bottom: 0;
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            left: 0;
-            opacity: 1;
-            position: fixed;
-            right: 0;
-            top: 0;
-            transition: opacity 0.5s ease-in-out;
-            z-index: 100;
-        }
-
-        #preload .logo {
-            height: 80px;
-            width: 80px;
-            animation: logo 4s infinite 0.5s;
-            transform-origin: 50% 50%;
-        }
-
-        @keyframes logo {
-            0% {
-                transform: rotate(0deg);
-            }
-            20% {
-                transform: rotate(-360deg);
-            }
-            30% {
-                transform: rotate(-360deg);
-            }
-            50% {
-                transform: rotate(-720deg);
-            }
-            60% {
-                transform: rotate(-720deg);
-            }
-            100% {
-                transform: rotate(0deg);
-            }
-        }
-
-        textarea {
-            resize: none;
-        }
-    </style>
-    <script>
-      <% if (htmlWebpackPlugin.options.nodeModules) { %>
-            require('module').globalPaths.push(
-                '<%= htmlWebpackPlugin.options.nodeModules.replace(/\\/g, "\\\\") %>',
-            )
-            <% } %>
-                require('source-map-support/source-map-support.js').install()
-    </script>
+    <meta charset=" UTF-8 ">
+    <title>Transparent Window</title>
 </head>
 
-<body>
-    <div id="app"></div>
+<body style="background: rgba(0,0,0,0)">
+    <div></div>
     <script>
-        const { remote } = require('electron')
-        const { name } = remote.getCurrentWindow()
+        var app = require('electron').remote;
 
-        const appEl = document.getElementById('app')
+        // Close app 
+        document.getElementById("close ").addEventListener("click ", () => {
+            app.BrowserWindow.getFocusedWindow().close();
+        }, false);
 
-        const initApp = (options = {}) => {
-            const { force = false } = options
-
-        }
+        // Close app 
+        document.getElementById("devtools ").addEventListener("click ", () => {
+            app.BrowserWindow.getFocusedWindow().openDevTools();
+        }, false);   
     </script>
 </body>
 

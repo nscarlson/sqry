@@ -7,8 +7,6 @@ import { AppContainer } from 'react-hot-loader'
 
 import App from 'components/App'
 
-import 'styles/global'
-
 const rootNode = document.getElementById('app')
 
 async function init() {
