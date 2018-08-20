@@ -2,24 +2,75 @@
 <html>
 
 <head>
-    <meta charset=" UTF-8 ">
-    <title>Transparent Window</title>
+    <title>
+        <%= process.env.npm_package_productName %>
+    </title>
+    <meta charset="utf-8">
+    <style>
+        #preload {
+            -webkit-app-region: drag;
+            align-items: center;
+            bottom: 0;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            left: 0;
+            opacity: 1;
+            position: fixed;
+            right: 0;
+            top: 0;
+            transition: opacity 0.5s ease-in-out;
+            z-index: 100;
+        }
+
+        textarea {
+            resize: none;
+        }
+    </style>
+    <script>
+      <% if (htmlWebpackPlugin.options.nodeModules) { %>
+            require('module').globalPaths.push(
+                '<%= htmlWebpackPlugin.options.nodeModules.replace(/\\/g, "\\\\") %>',
+            )
+            <% } %>
+                require('source-map-support/source-map-support.js').install()
+    </script>
 </head>
 
 <body>
-    <div></div>
+    <div id="preload">
+    </div>
+    <div id="app"></div>
     <script>
-        var app = require('electron').remote;
+        const { remote } = require('electron')
+        const { name } = remote.getCurrentWindow()
 
-        // Close app 
-        document.getElementById("close ").addEventListener("click ", () => {
-            app.BrowserWindow.getFocusedWindow().close();
-        }, false);
+        const preloadEl = document.getElementById('preload')
+        const appEl = document.getElementById('app')
 
-        // Close app 
-        document.getElementById("devtools ").addEventListener("click ", () => {
-            app.BrowserWindow.getFocusedWindow().openDevTools();
-        }, false);   
+        const initApp = (options = {}) => {
+            const { force = false } = options
+
+            if (force) {
+                preloadEl.remove()
+            } else {
+                preloadEl.style.opacity = 0
+
+                preloadEl.addEventListener('transitionend', () => preloadEl.remove())
+            }
+        }
+
+        if (name === 'MainWindow') {
+            preloadEl.style.display = 'flex'
+            const startTime = Date.now()
+            const PRELOAD_WAIT_TIME_MIN = 3000
+            window.onAppReady = () => {
+                const delay = Math.max(0, PRELOAD_WAIT_TIME_MIN - (Date.now() - startTime))
+                setTimeout(initApp, delay)
+            }
+        } else {
+            initApp({ force: true })
+        }
     </script>
 </body>
 
