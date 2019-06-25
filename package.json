@@ -28,7 +28,7 @@
     "react-dom": "^16.4.1",
     "react-markdown": "^3.3.2",
     "source-map": "0.7.3",
-    "source-map-support": "^0.5.4",
+    "source-map-support": "^0.5.12",
     "styled-components": "^3.3.2",
     "styled-system": "^2.2.9"
   },
