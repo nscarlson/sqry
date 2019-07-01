@@ -20,7 +20,7 @@
   "dependencies": {
     "babel-runtime": "^6.26.0",
     "cross-env": "^5.2.0",
-    "electron-context-menu": "^0.10.0",
+    "electron-context-menu": "^0.13.0",
     "electron-updater": "^2.21.8",
     "jsqr": "^1.1.1",
     "qrcode": "^1.2.0",
