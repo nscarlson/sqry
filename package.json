@@ -52,7 +52,7 @@
     "electron-builder": "20.14.7",
     "electron-devtools-installer": "2.2.4",
     "electron-rebuild": "1.8.8",
-    "electron-webpack": "2.1.2",
+    "electron-webpack": "2.7.4",
     "eslint": "4.19.1",
     "eslint-config-prettier": "2.9.0",
     "eslint-import-resolver-babel-module": "5.1.0",
