@@ -65,7 +65,7 @@
     "hard-source-webpack-plugin": "0.6.12",
     "jest": "22.4.4",
     "node-loader": "0.6.0",
-    "prettier": "1.14.2",
+    "prettier": "1.19.1",
     "react-hot-loader": "4.12.18",
     "react-test-renderer": "16.4.2",
     "webpack": "4.16.5",
