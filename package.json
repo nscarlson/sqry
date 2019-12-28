@@ -26,7 +26,7 @@
     "qrcode": "^1.2.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-markdown": "^3.3.2",
+    "react-markdown": "^4.0.0",
     "source-map": "0.7.3",
     "source-map-support": "^0.5.4",
     "styled-components": "^4.0.0",
