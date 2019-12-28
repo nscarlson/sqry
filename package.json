@@ -30,7 +30,7 @@
     "source-map": "0.7.3",
     "source-map-support": "^0.5.4",
     "styled-components": "^4.0.0",
-    "styled-system": "^2.2.9"
+    "styled-system": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.7.7",
