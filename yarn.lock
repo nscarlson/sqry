@@ -3324,9 +3324,9 @@ electron-builder@21.2.0:
     update-notifier "^3.0.1"
     yargs "^13.3.0"
 
-electron-context-menu@^0.15.0:
-  version "0.15.1"
-  resolved "https://registry.yarnpkg.com/electron-context-menu/-/electron-context-menu-0.15.1.tgz#30d776ff889f220de688bde762870d5fcf9c83c2"
+electron-context-menu@^0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/electron-context-menu/-/electron-context-menu-0.16.0.tgz#4f53b4640e321f536415a625505a908518f5dff7"
   dependencies:
     cli-truncate "^2.0.0"
     electron-dl "^1.2.0"
