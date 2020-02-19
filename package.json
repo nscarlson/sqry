@@ -61,7 +61,7 @@
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.17.0",
     "flow-bin": "0.114.0",
-    "flow-typed": "2.6.2",
+    "flow-typed": "3.0.0",
     "hard-source-webpack-plugin": "0.13.1",
     "jest": "24.9.0",
     "node-loader": "0.6.0",
