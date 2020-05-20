@@ -1,7 +1,18 @@
 {
-    "extends": [
-        "config:base"
-    ],
-    "assignAutomerge": true,
-    "automerge": true
+  "extends": [
+    ":separateMajorReleases",
+    ":combinePatchMinorReleases",
+    ":ignoreUnstable",
+    ":prImmediately",
+    ":renovatePrefix",
+    ":semanticPrefixFixDepsChoreOthers",
+    ":updateNotScheduled",
+    ":automergeAll",
+    ":ignoreModulesAndTests",
+    ":autodetectPinVersions",
+    ":prHourlyLimitNone",
+    ":prConcurrentLimit20",
+    "group:monorepos",
+    "group:recommended"
+  ]
 }
