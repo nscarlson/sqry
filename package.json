@@ -48,7 +48,7 @@
     "chance": "1.1.7",
     "concurrently": "5.2.0",
     "dotenv": "8.2.0",
-    "electron": "8.1.1",
+    "electron": "8.5.2",
     "electron-builder": "22.8.0",
     "electron-devtools-installer": "2.2.4",
     "electron-rebuild": "1.8.8",
