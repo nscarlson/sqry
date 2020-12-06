@@ -54,7 +54,7 @@
     "electron-rebuild": "1.8.8",
     "electron-webpack": "2.7.4",
     "eslint": "7.15.0",
-    "eslint-config-prettier": "6.9.0",
+    "eslint-config-prettier": "7.0.0",
     "eslint-import-resolver-babel-module": "5.1.0",
     "eslint-plugin-flowtype": "5.2.0",
     "eslint-plugin-import": "2.22.0",
