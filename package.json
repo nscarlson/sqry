@@ -51,7 +51,7 @@
     "electron": "11.0.3",
     "electron-builder": "22.9.1",
     "electron-devtools-installer": "2.2.4",
-    "electron-rebuild": "1.8.8",
+    "electron-rebuild": "2.3.5",
     "electron-webpack": "2.7.4",
     "eslint": "7.15.0",
     "eslint-config-prettier": "7.0.0",
