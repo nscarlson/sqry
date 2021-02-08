@@ -29,7 +29,7 @@
     "react-markdown": "^4.0.0",
     "source-map": "0.7.3",
     "source-map-support": "^0.5.4",
-    "styled-components": "^4.0.0",
+    "styled-components": "^5.0.0",
     "styled-system": "^5.0.0"
   },
   "devDependencies": {
