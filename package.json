@@ -66,7 +66,7 @@
     "jest": "24.9.0",
     "node-loader": "1.0.2",
     "prettier": "2.2.1",
-    "react-hot-loader": "4.13.0",
+    "react-hot-loader": "4.13.1",
     "react-test-renderer": "19.1.0",
     "webpack": "5.99.7",
     "webpack-bundle-analyzer": "3.6.0",
