@@ -33,7 +33,7 @@
     "styled-system": "^5.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.26.10",
+    "@babel/core": "7.29.6",
     "@babel/polyfill": "7.12.1",
     "@babel/preset-env": "7.26.9",
     "@babel/preset-flow": "7.25.9",
