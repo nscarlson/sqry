@@ -59,7 +59,7 @@
     "eslint-plugin-flowtype": "5.2.0",
     "eslint-plugin-import": "2.22.0",
     "eslint-plugin-jsx-a11y": "6.2.3",
-    "eslint-plugin-react": "7.17.0",
+    "eslint-plugin-react": "7.37.5",
     "flow-bin": "0.114.0",
     "flow-typed": "3.2.1",
     "hard-source-webpack-plugin": "0.13.1",
